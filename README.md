@@ -1,6 +1,6 @@
 # Docker-Terraform
 
-This repository agenda is about to create and run the docker container through Terraform.
+The main focus of this repository is to establish and execute the docker container using Terraform.
 
 **#Steps1:** Install the Terraform docker provider
 
