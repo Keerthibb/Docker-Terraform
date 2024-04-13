@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Auto DNS</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <style>
+        .input-wrap {
+            padding: 10px 15px;
+            width: 100%;
+            max-width: 350px;
+            border: none;
+            background-color: #F1F5F9;
+            border-radius: 6px;
+        }
+
+        .submitBtn {
+            background-color: #007FAD;
+            border: none;
+            color: #fff;
+            padding: 7px 28px;
+            border-radius: 4px;
+            margin-right: 7px;
+            width: 100%;
+            max-width: 200px;
+            font-size: 16px;
+        }
+
+        .cancelBtn {
+            padding: 7px 28px;
+            border-radius: 4px;
+            margin-right: 7px;
+            border: none;
+            background-color: #E5F1F7;
+            color: #007FAD;
+            width: 100%;
+            max-width: 100px;
+            font-size: 16px;
+        }
+
+        input[type=checkbox],
+        input[type=radio] {
+            margin: 0px;
+            width: 20px;
+            height: 20px;
+        }
+
+        .home-wrap {
+            background-color: #004766;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 27px;
+            position: fixed;
+            width: 100%;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="home-wrap">
+	    <form action="/" method="post" >
+            <button class='button-wrap' type="submit"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4LUnqmU5BsVH_lRHhMw98uU4FF_QfqYqqM4C_SImpmt963PZzgD_SNmOLWNoWguRMKRw&usqp=CAU" alt="home" style="width: 50px; cursor: pointer;"></button>
+        </form>
+    </div>
+    <div class="container" style="padding-top: 75px;">
+        <div class="row">
+            <div class="col-lg-5 col-md-5 col-sm-5">
+                <img style='width:100%; max-width: 650px; padding-top: 30px;'
+                    src='https://geekflare.com/wp-content/uploads/2023/04/DNS-Lookup-time.png' alt="dns" />
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-7">
+                <div class="row" style='padding:30px' ;>
+                    <div class="col-lg-12 col-md-12 col-sm-12" style='margin-bottom:20px;'>
+                        <h1>Auto DNS</h1>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12" style='margin-bottom:20px;'>
+                        <marquee width="100%" direction="left" height="30%">
+                            <p style='font-size: 16px; font-weight: bold; color: #004766;font-weight: bold;'>The
+                                Domain Name System helps you get where you
+                                want to be on the internet.</p>
+                        </marquee>
+                    </div>
+
+                        <div class="col-lg-5 col-md-5 col-sm-5"
+                            style='margin-bottom:20px; font-size: 14px; font-weight: bold;'>
+                            Enter the server name
+                        </div>
+                      <form action="/action" method="post" id="loginForm">
+                        <div class="col-lg-7 col-md-7 col-sm-7" style='margin-bottom:20px;'>
+                            <input placeholder="Server Name" class="input-wrap" type="text" name="name" value={{dns_name}} readonly
+                                id="name" />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5"
+                            style='margin-bottom:20px;font-size: 14px; font-weight: bold;'>
+                            Enter the server IP
+                        </div>
+                        <div class="col-lg-7 col-md-7 col-sm-7" style='margin-bottom:20px;'>
+                            <input placeholder="Server IP" class="input-wrap" type="text" name="ip" id="ip"
+                                onchange="myFunction(this.value)">
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5"
+                            style='margin-bottom:20px;font-size: 14px; font-weight: bold;'>
+                            Do you want to add or remove
+                        </div>
+                        <div class="col-lg-7 col-md-7 col-sm-7"
+                            style='margin-bottom:20px; display: flex; align-items: center;'>
+                            <div style="display: flex;">
+                                <input type="radio" name="action" value="add" id="add" checked>
+                                <label for="add" style="margin-right: 40px; margin-left: 10px;">Add</label>
+                            </div>
+                            <div style="display: flex;">
+                                <input type="radio" name="action" value="remove" id="remove">
+                                <label for="remove" style=" margin-left: 10px;">Remove</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12" style='font-size: 14px; font-weight: bold;'>
+                           Comments
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12" style="margin-bottom: 15px;">
+                            <textarea class="textArea" rows="6" cols="50" name="comment" id="comment" style="width: 100%;"></textarea>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5"
+                            style='margin-bottom:20px;font-size: 14px; font-weight: bold;'>
+                            Are you sure you want to proceed
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3" style='margin-bottom:20px;'>
+                            <button type="submitttttt" class="submitBtn">Submit</button>
+                        </div>
+                    </form>
+                    <div class="col-lg-4 col-md-4 col-sm-4" style='margin-bottom:20px;'>
+                        <form action="/" method="post">
+			            <button class="cancelBtn" onclick="window.location.href='home.html'">Cancel</button>
+			            </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type=text/javascript>
+        const btn = document.querySelector('#btn');
+        let selectedSize;
+        const radioButtons = document.querySelectorAll('input[name="size"]');
+
+        function myFunction(val) {
+            ValidateIPaddress(val)
+        }
+
+
+        function ValidateIPaddress(ipaddress) {
+
+            if (/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(ipaddress)) {
+                return (true)
+            }
+            alert("You have entered an invalid IP address!",)
+            return (false)
+        }
+
+        let loginForm = document.getElementById("loginForm");
+
+        loginForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            for (const radioButton of radioButtons) {
+                if (radioButton.checked) {
+                    selectedSize = radioButton.value;
+                    break;
+                }
+            }
+            let radio = selectedSize
+            let name = document.getElementById("name");
+            let ip = document.getElementById("ip");
+            let comment = document.getElementById("comment")
+
+            if (name.value === "" || ip.value === "" || comment === '') {
+                alert("Ensure you input a value in both fields!");
+            }
+            else {
+                alert("This form has been successfully submitted!");
+                console.log(
+                    `This form has a name of ${name.value} , ip of ${ip.value} and radio of ${radio}`, `${comment}`
+                );
+                ip.value = "";
+                comment = ""
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>
